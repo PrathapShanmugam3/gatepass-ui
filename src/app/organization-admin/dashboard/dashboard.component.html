@@ -1,0 +1,54 @@
+
+<app-navbarfor-organization></app-navbarfor-organization>
+
+
+
+
+<!-- Table -->
+<div class="container mt-4">
+  <table class="table table-hover">
+    <thead class="bg-secondary text-light">
+      <tr>
+        <th>Email</th>
+        <th>UserName</th>
+        <th>Phone</th>
+        <th>Role</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="
+          let item of dataCodeResult
+            | paginate : { itemsPerPage: itemsPerPage, currentPage: p };
+          let i = index
+        "
+      >
+        <td>{{ item.email }}</td>
+        <td>{{ item.username }}</td>
+        <td>{{ item.phone }}</td>
+        <td>{{ item.role }}</td>
+        <td>
+          <mat-icon *ngIf="item.enabled ==true " class="text-success">check_circle</mat-icon>
+          <mat-icon *ngIf="item.enabled === false " class="text-danger">cancel</mat-icon>
+        </td>
+
+        <!-- <td>{{ item.created_date | date: 'dd-MM-yyyy' }}</td>color
+<td>{{ item.created_date | date: 'MM/dd/yyyy' }}</td>
+<td>{{ item.created_date | date: 'yyyy-MM-dd' }}</td>
+<td>{{ item.created_date | date: 'EEEE, MMMM d, y' }}</td>
+<td>{{ item.created_date | date: 'h:mm a' }}</td> -->
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Pagination Controls -->
+  <div class="d-flex justify-content-center">
+    <pagination-controls
+      (pageChange)="p = $event"
+      previousLabel="Previous"
+      nextLabel="Next"
+      [responsive]="true"
+    ></pagination-controls>
+  </div>
+</div>
